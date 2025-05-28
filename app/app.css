@@ -484,7 +484,7 @@
   }
 
   .p-20-semibold {
-    @apply text-base md:text-[20xp] md:leading-7 font-semibold;
+    @apply text-base md:text-[20px] md:leading-7 font-semibold;
   }
 
   .p-18-bold {
