@@ -26,6 +26,11 @@ export const storeUserData = async () => {
       ? await getGooglePicture(providerAccessToken)
       : null;
 
+    // Add a helper
+    const getISOString = () => {
+      return new Date().toISOString().split(".")[0] + "Z"; // Remove milliseconds
+    };
+
     const createdUser = await database.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.userCollectionId,
@@ -35,7 +40,8 @@ export const storeUserData = async () => {
         email: user.email,
         name: user.name,
         imageUrl: profilePicture,
-        joinedAt: new Date().toISOString(),
+        // joinedAt: new Date().toISOString(),
+        joinedAt: getISOString(),
       }
     );
 
