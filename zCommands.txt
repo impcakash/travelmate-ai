@@ -12,6 +12,10 @@ npm install @syncfusion/ej2-base @syncfusion/ej2-react-buttons @syncfusion/ej2-r
 
 npm install dayjs
 
+npm install appwrite
+
+
+
 
 
 
