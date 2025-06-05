@@ -15,55 +15,13 @@ npm install dayjs
 npm install appwrite
 
 
+// sentry
+// https://docs.sentry.io/platforms/javascript/guides/react-router/
+//
 
+npm install @sentry/react-router @sentry/profiling-node
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+npx react-router reveal
 
 
 
