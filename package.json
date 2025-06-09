@@ -11,6 +11,10 @@
   "dependencies": {
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
+    "@sentry/profiling-node": "^9.25.1",
+    "@sentry/react": "^9.26.0",
+    "@sentry/react-router": "^9.25.1",
+    "@sentry/replay": "^7.116.0",
     "@syncfusion/ej2-base": "^29.2.4",
     "@syncfusion/ej2-react-buttons": "^29.2.4",
     "@syncfusion/ej2-react-charts": "^29.2.4",
@@ -34,6 +38,7 @@
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "cross-env": "^7.0.3",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
