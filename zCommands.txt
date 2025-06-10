@@ -20,9 +20,16 @@ npm install appwrite
 //
 
 npm install @sentry/react-router @sentry/profiling-node
-
 npx react-router reveal
 
+
+/*
+Delete node_modules folder:
+rmdir /s /q node_modules
+
+Delete package-lock.json file:
+del /f /q package-lock.json
+*/
 
 
 
