@@ -12,10 +12,11 @@ const sentryConfig: SentryReactRouterBuildOptions = {
   project: "travel-agency",
   // An auth token is required for uploading source maps.
   authToken:
-    "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",
+    "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",
   // ...
 };
 
+ 
 export default defineConfig((config) => {
   return {
     plugins: [
