@@ -61,7 +61,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     let trip;
     try {
-      trip = parseMarkdownToJson(rawResponse); // You can also try JSON.parse(rawResponse) if Gemini returns clean JSON
+      trip = parseMarkdownToJson(rawResponse);
     } catch (parseError) {
       console.error("❌ Failed to parse Gemini response:", rawResponse);
       return new Response(
@@ -70,29 +70,43 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       );
     }
 
-    const imageRes = await fetch(
-      `https://api.unsplash.com/search/photos?query=${country} ${interests} ${travelStyle}&client_id=${unsplashApiKey}`
+    // ✅ Build safe query string
+    const queryTerms = [country, interests, travelStyle]
+      .filter(Boolean)
+      .join(" ");
+    const query = encodeURIComponent(queryTerms);
+
+    console.log("🔍 Unsplash query string:", query);
+    console.log(
+      "🔗 Full URL:",
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashApiKey}`
     );
+
+    // 🔍 Fetch images from Unsplash
+    const imageRes = await fetch(
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashApiKey}`
+    );
+
     const imageJson = await imageRes.json();
-    const imageUrls = imageJson.results
-      ?.slice(0, 3)
-      .map((r: any) => r.urls?.regular || null);
 
-    // const imageRes = await fetch(
-    //   `https://api.unsplash.com/search/photos?query=${country} ${interests} ${travelStyle}&client_id=${unsplashApiKey}`
-    // );
+    // 🚨 Check for API errors
+    if (imageJson.errors) {
+      console.error("❌ Unsplash API error:", imageJson.errors);
+    }
 
-    // const imageJson = await imageRes.json();
+    console.log("📸 Unsplash raw results:", imageJson.results);
 
-    // const imageUrls: string[] = Array.isArray(imageJson.results)
-    //   ? imageJson.results
-    //       .slice(0, 3)
-    //       .map((r: any) => r?.urls?.regular || null)
-    //       .filter((url: string | null): url is string => url !== null)
-    //   : [];
+    // ✅ Extract clean image URLs
+    const imageUrls: string[] = Array.isArray(imageJson.results)
+      ? imageJson.results
+          .slice(0, 3)
+          .map((r: any) => r?.urls?.regular || null)
+          .filter((url: string | null): url is string => url !== null)
+      : [];
 
-    // console.log("✅ imageUrls:", imageUrls);
+    console.log("✅ Final imageUrls:", imageUrls);
 
+    // 💾 Save to Appwrite
     const doc = await database.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.tripCollectionId,
