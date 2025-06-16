@@ -32,6 +32,9 @@ del /f /q package-lock.json
 */
 
 
+npm install @google/generative-ai
+
+
 
 
 
