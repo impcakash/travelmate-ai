@@ -102,8 +102,8 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
 
       if (result?.id) navigate(`/trips/${result.id}`);
       else console.error("Failed to generate itinerary");
-    } catch (error) {
-      console.error("Error generating itinerary:", error);
+    } catch (e) {
+      console.error("Error generating itinerary:", e);
     } finally {
       setLoading(false);
     }
