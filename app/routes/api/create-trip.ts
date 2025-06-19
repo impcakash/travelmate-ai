@@ -76,11 +76,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       .join(" ");
     const query = encodeURIComponent(queryTerms);
 
-    console.log("🔍 Unsplash query string:", query);
-    console.log(
-      "🔗 Full URL:",
-      `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashApiKey}`
-    );
+    // console.log("🔍 Unsplash query string:", query);
+    // console.log(
+    //   "🔗 Full URL:",
+    //   `https://api.unsplash.com/search/photos?query=${query}&client_id=${unsplashApiKey}`
+    // );
 
     // 🔍 Fetch images from Unsplash
     const imageRes = await fetch(
@@ -94,7 +94,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       console.error("❌ Unsplash API error:", imageJson.errors);
     }
 
-    console.log("📸 Unsplash raw results:", imageJson.results);
+    // console.log("📸 Unsplash raw results:", imageJson.results);
 
     // ✅ Extract clean image URLs
     const imageUrls: string[] = Array.isArray(imageJson.results)
@@ -104,7 +104,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           .filter((url: string | null): url is string => url !== null)
       : [];
 
-    console.log("✅ Final imageUrls:", imageUrls);
+    // console.log("✅ Final imageUrls:", imageUrls);
 
     // 💾 Save to Appwrite
     const doc = await database.createDocument(
