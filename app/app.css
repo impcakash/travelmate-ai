@@ -273,7 +273,7 @@
     }
   }
 
-  .trip-card {
+  /* .trip-card {
     @apply shadow-300 bg-white rounded-[20px] flex-col w-full relative;
 
     img {
@@ -290,12 +290,37 @@
       figure {
         @apply flex items-center gap-2;
 
-        figCaption {
+        figcaption {
+          @apply text-xs md:text-sm font-normal text-gray-100;
+        }
+      }
+    }
+  } */
+
+  .trip-card {
+    @apply shadow-md bg-white rounded-[20px] flex flex-col w-full relative;
+
+    img {
+      @apply w-full aspect-video object-cover rounded-t-xl;
+    }
+
+    article {
+      @apply flex flex-col gap-3 mt-4 pl-[18px] pr-3.5;
+
+      h2 {
+        @apply text-sm md:text-lg font-semibold text-dark-100 line-clamp-2;
+      }
+
+      figure {
+        @apply flex items-center gap-2;
+
+        figcaption {
           @apply text-xs md:text-sm font-normal text-gray-100;
         }
       }
     }
   }
+
 
   .link-logo {
     @apply flex items-center gap-1.5 py-10 border-b border-light-100;
